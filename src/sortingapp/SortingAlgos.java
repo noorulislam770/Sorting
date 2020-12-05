@@ -1,5 +1,8 @@
 package sortingapp;
 
+import java.util.Collections;
+import java.util.*;
+
 public class SortingAlgos 
 {
     private int bSwap;
@@ -46,6 +49,40 @@ public class SortingAlgos
     
     
     
+    public void BucketSort(float [] arr, int n){
+        { 
+            if (n <= 0) 
+                return; 
+    
+            // 1) Create n empty buckets 
+            @SuppressWarnings("unchecked")
+            Vector<Float>[] buckets = new Vector[n]; 
+    
+            for (int i = 0; i < n; i++) { 
+                buckets[i] = new Vector<Float>(); 
+            } 
+    
+            // 2) Put array elements in different buckets 
+            for (int i = 0; i < n; i++) { 
+                float idx = arr[i] * n; 
+                buckets[(int)idx].add(arr[i]); 
+            } 
+    
+            // 3) Sort individual buckets 
+            for (int i = 0; i < n; i++) { 
+                Collections.sort(buckets[i]); 
+            } 
+    
+            // 4) Concatenate all buckets into arr[] 
+            int index = 0; 
+            for (int i = 0; i < n; i++) { 
+                for (int j = 0; j < buckets[i].size(); j++) { 
+                    arr[index++] = buckets[i].get(j); 
+                } 
+            } 
+        } 
+    
+    }
     
     
     public void SelectionSort(int sList[]){
@@ -190,27 +227,55 @@ public class SortingAlgos
         }
     }
     
-    int partition(int[] arr, int low, int high){
+int partition(int[] arr,int lb, int ub){
+    int pivot = arr[lb];
+    int start = lb;
+    int end = ub;
 
-        int pivot = arr[high];
-
-        int i = low -1;
-
-        for (int j = low;j <= high - 1;j++){
-            if (arr[j] < pivot){
-                i++;
-                int temp = arr[i];
-                arr[i] = arr[j];
-                arr[j] = temp;
-            }
+    while(start < end){
+        while(arr[start] <= pivot){
+            start ++;
         }
-        int tempOut = arr[high];
-        arr[high] = arr[i + 1];
-        arr[i + 1] = tempOut;
+        while(arr[end] > pivot){
+            end --;
+        }
 
-        return (i + 1);
-        
+        if (start < end){
+            int temp = arr[start];
+            arr[start] = arr[end];
+            arr[end] = temp;
+        }
     }
+    int temp = arr[lb];
+    arr[lb] = arr[end];
+    arr[end] = temp;
+    return end;
+    
+
+}
+
+//     int partition(int[] arr, int low, int high){
+// // [33,42,43,64,5,3,44,53],
+// //[33,53,43,64,5,3,44,42]
+//         int pivot = arr[high];//53 
+
+//         int i = low -1; //-1 
+
+//         for (int j = low;j <= high - 1;j++){
+//             if (arr[j] < pivot){ // 33 < 53 T 
+//                 i++; //0
+//                 int temp = arr[i]; // 33
+//                 arr[i] = arr[j]; // arr[0] = 33
+//                 arr[j] = temp; // arr[0] = 53
+//             }
+//         }
+//         int tempOut = arr[high];//53
+//         arr[high] = arr[i + 1]; //arr[7] = 42
+//         arr[i + 1] = tempOut; // arr[1] = 53
+
+//         return (i + 1); // 1
+        
+//     }
 
 
 

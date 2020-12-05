@@ -48,6 +48,7 @@ public class SortingApp
             System.out.println("\t5. Print Comp Report  (R/r) ");
             System.out.println("\t6. Exit Programe      (E/e) ");
             System.out.println("\t7. Merge Sort         (M/m) ");
+            System.out.println("\t8. Bucket Sort        (K/k) ");
             System.out.println("------------------------------------");
             System.out.print("Enter Your Choice (I/L/B/) : ");
             
@@ -102,6 +103,42 @@ public class SortingApp
                 sort.PrintList(qList);
                 System.out.println("\n------------------------------------");
             }
+
+            else if (choice == 'K' || choice == 'k'){
+                System.out.println("\n------------------------------------");
+                float arr[] = { 
+                    (float)0.897, (float)0.565, 
+                    (float)0.656, (float)0.1234, 
+                    (float)0.665, (float)0.3434,
+                    (float)0.2434,(float)0.1131,
+                    (float)0.3434,(float)0.3090,
+                    (float)0.1212,(float)0.2354,
+                    (float)0.2521,(float)0.7030,
+                    (float)0.1109,(float)0.5531,
+                };
+        
+                System.out.println("UnSorted  array is "); 
+                System.out.print("\n[");
+                for (float el : arr) { 
+                    System.out.print(el + ", "); 
+                } 
+                System.out.print("]\n");
+        
+                        
+        
+                int n = arr.length; 
+                
+                sort.BucketSort(arr, n); 
+        
+                System.out.println("Sorted array is "); 
+                System.out.print("\n[");
+                for (float el : arr) { 
+                    System.out.print(el + ", "); 
+                } 
+                System.out.print("]\n");
+        
+            } 
+            
             
             else if(choice == 'R' || choice == 'r')
             {
