@@ -1,22 +1,22 @@
 package sortingapp;
 
 
-class MyStack {
+class CharStack {
   
   
     private int size;
-    public int [] stack;
+    public char [] stack;
     private int top;
     
-    public MyStack(int size){
+    public CharStack(int size){
       this.size = size;
-      stack = new int[size];
+      stack = new char [size];
       top = -1;
     }
 
     
     
-    public int peek(){
+    public char peek(){
       if (!isFull()){
           System.out.println("peek : " + stack[top]);
         return stack[top];
@@ -24,9 +24,9 @@ class MyStack {
       return -0;
     }
     
-    public int pop(){
+    public char pop(){
       if (!isEmpty()){
-          int value = stack[top];
+          char value = stack[top];
           stack[top] = 0;
           top--;
           System.out.println("popped : " + value);
@@ -36,7 +36,7 @@ class MyStack {
     }
     
     
-    public void push(int value){
+    public void push(char value){
       if (!isFull()){
         top++;
         stack[top] = value;
